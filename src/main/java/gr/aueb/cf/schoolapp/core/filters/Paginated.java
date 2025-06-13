@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * αντί να επιστρέφω Page δημιουργώ μια custom class
+ * Java 21 θα ηταν record
  */
 @Getter
 @Setter
