@@ -48,6 +48,7 @@ public class TeacherSpecification {
 
     public static Specification<Teacher> teacherStringFieldLike(String field, String value) {
         return(
+                //.trim().isEmpty() κάνει τα ιδια με την .isBlank()
                 (root, query, criteriaBuilder)->{
                     if(value == null|| value.trim().isEmpty()) return criteriaBuilder.isTrue(criteriaBuilder.literal(true));
 
