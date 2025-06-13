@@ -14,6 +14,7 @@ import gr.aueb.cf.schoolapp.model.Teacher;
 import gr.aueb.cf.schoolapp.repository.PersonalInfoRepository;
 import gr.aueb.cf.schoolapp.repository.TeacherRepository;
 import gr.aueb.cf.schoolapp.repository.UserRepository;
+import gr.aueb.cf.schoolapp.rest.TeacherRestController;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor //constructor για final πεδία και available για dependency injection
@@ -96,6 +99,10 @@ public class TeacherService {
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);
         return teacherRepository.findAll(pageable).map(mapper::mapToTeacherReadOnlyDTO);
+    }
+
+    public List<TeacherReadOnlyDTO> getTeachersFiltered(TeacherFilters filters){
+        return teacherRepository.findAll(getSpecsFromFilters(filters)).stream().map(mapper::mapToTeacherReadOnlyDTO).collect(Collectors.toList());
     }
 
     @Transactional
