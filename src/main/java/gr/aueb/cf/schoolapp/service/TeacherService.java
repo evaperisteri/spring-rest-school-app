@@ -14,7 +14,6 @@ import gr.aueb.cf.schoolapp.model.Teacher;
 import gr.aueb.cf.schoolapp.repository.PersonalInfoRepository;
 import gr.aueb.cf.schoolapp.repository.TeacherRepository;
 import gr.aueb.cf.schoolapp.repository.UserRepository;
-import gr.aueb.cf.schoolapp.rest.TeacherRestController;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;

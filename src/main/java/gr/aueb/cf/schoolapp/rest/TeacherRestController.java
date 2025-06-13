@@ -27,8 +27,8 @@ import java.util.List;
 public class TeacherRestController {
     private final TeacherService teacherService;
 
-    //@Valid ενεργοποιεί τον hibernate validator. Αν υπαρχουν λάθη τα βαζει στο binding result και θα τα κανει extract ο exception handler σε JSON,
-    // @RequestPart επειδη στελνουμε και data και αρχειο
+    //@Valid ενεργοποιεί τον hibernate validator. Αν υπάρχουν λάθη τα βάζει στο binding result και θα τα κάνει extract ο exception handler σε JSON,
+    // @RequestPart επειδή στέλνουμε και data και αρχείο
 
     @PostMapping("/teachers/save")
     public ResponseEntity<TeacherReadOnlyDTO> saveTeacher
@@ -37,7 +37,7 @@ public class TeacherRestController {
      BindingResult bindingResult)
      throws AppObjectInvalidArgumentException, ValidationException, AppObjectAlreadyExists,
             AppServerException {
-        //δεν κανουμε try catch γιατι θα δημιουργηθει ενας κεντρικος handler για τα δικά μας exceptions
+        //δεν κάνουμε try catch γιατί θα δημιουργηθεί ένας κεντρικός handler για τα δικά μας exceptions
         if(bindingResult.hasErrors()){
             throw new ValidationException(bindingResult);
         }
@@ -45,9 +45,9 @@ public class TeacherRestController {
         try {
             TeacherReadOnlyDTO teacherReadOnlyDTO= teacherService.saveTeacher(teacherInsertDTO, amkaFile);
             return new ResponseEntity<>(teacherReadOnlyDTO, HttpStatus.OK);
-            //μετατρεπουμε το ioexception σε appserverexception
+            //μετατρέπουμε το ioexception σε appserver exception
         } catch(IOException e ){
-            throw new AppServerException("Attachment", "Attatchment can not get uploaded");
+            throw new AppServerException("Attachment", "Attachment can not get uploaded");
         }
 
     }
