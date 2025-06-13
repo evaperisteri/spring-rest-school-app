@@ -1,5 +1,8 @@
 package gr.aueb.cf.schoolapp.core.filters;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -7,7 +10,10 @@ import org.springframework.data.domain.Sort;
 /**
  * container όλων των βασικών για pagination & sorting
  */
-public class GenericFilters {
+@Getter
+@Setter
+@NoArgsConstructor
+public abstract class GenericFilters {
     private final static int DEFAULT_PAGE_SIZE= 10;
     private final static String DEFAULT_SORT_COLUMN= "id";
     private final static Sort.Direction DEFAULT_SORT_DIRECTION = Sort.Direction.ASC;
